@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Results</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="nav-logo">
+      <img src="https://images4.imagebam.com/15/7f/48/ME1BEF30_o.png">
+    </div>
+    <div class="top-buttons">
+      <button onclick="window.location.href='index.html'">Home</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Nearby Sightseeing</h1>
+
+    <div id="map"></div>
+
+    <div id="resultsList"></div>
+
+    <div id="suggestions"></div>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

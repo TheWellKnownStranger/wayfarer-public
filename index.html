@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Explore Nearby</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="nav-logo">
+      <img src="https://images4.imagebam.com/15/7f/48/ME1BEF30_o.png">
+    </div>
+    <div class="top-buttons">
+      <button onclick="openSidebar('contactSidebar')">Contact Us</button>
+      <button onclick="openSidebar('loginSidebar')">Log In</button>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="https://images4.imagebam.com/c1/b3/2d/ME1BEF0C_o.png" class="logo-img">
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <p>Discover amazing places around you. Wayfarer helps you find sightseeing locations quickly and easily based on your location and preferences.</p>
+  </div>
+
+  <!-- Fading Image -->
+  <div class="fade-gallery">
+    <img class="fade-img active" src="https://picsum.photos/800/300?random=1">
+    <img class="fade-img" src="https://picsum.photos/800/300?random=2">
+    <img class="fade-img" src="https://picsum.photos/800/300?random=3">
+    <img class="fade-img" src="https://picsum.photos/800/300?random=4">
+    <img class="fade-img" src="https://picsum.photos/800/300?random=5">
+  </div>
+
+  <div class="container">
+    <h1>Explore Nearby</h1>
+
+    <div class="card">
+      <input type="text" id="locationInput" placeholder="Enter a location">
+      
+      <button id="useLocation">Use My Location</button>
+
+      <select id="distance">
+        <option value="5">Within 5 km</option>
+        <option value="10">Within 10 km</option>
+        <option value="25">Within 25 km</option>
+      </select>
+
+      <button id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <!-- Contact Sidebar -->
+  <div id="contactSidebar" class="sidebar">
+    <button class="close" onclick="closeSidebar('contactSidebar')">×</button>
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Subject">
+    <textarea placeholder="Your message"></textarea>
+    <button>Send</button>
+  </div>
+
+  <!-- Login Sidebar -->
+  <div id="loginSidebar" class="sidebar">
+    <button class="close" onclick="closeSidebar('loginSidebar')">×</button>
+    <h2>Log In</h2>
+    <input type="text" placeholder="Email or Username">
+    <input type="password" placeholder="Password">
+    <button>Log In</button>
+    <button class="secondary">Forgot Password</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
