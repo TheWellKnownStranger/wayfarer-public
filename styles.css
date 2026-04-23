@@ -5,7 +5,11 @@ body {
   color: #333;
 }
 
-/* Top Bar */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -30,12 +34,10 @@ body {
   cursor: pointer;
 }
 
-/* Nav Logo */
 .nav-logo img {
   height: 60px;
 }
 
-/* Logo */
 .logo-container {
   text-align: center;
   margin-top: 20px;
@@ -45,14 +47,12 @@ body {
   width: 300px;
 }
 
-/* Summary */
 .summary {
   max-width: 700px;
   margin: 20px auto;
   text-align: center;
 }
 
-/* Fade Gallery */
 .fade-gallery {
   position: relative;
   width: 100%;
@@ -101,6 +101,7 @@ input, select, button, textarea {
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 button {
@@ -119,7 +120,6 @@ textarea {
   resize: none;
 }
 
-/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -159,18 +159,26 @@ textarea {
   border-radius: 12px;
 }
 
-#resultsList {
+#resultsList,
+#savedList,
+#suggestions {
   margin-top: 20px;
   text-align: left;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .place {
   background: white;
   padding: 10px;
-  margin-top: 10px;
   border-radius: 8px;
   transition: transform 0.2s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .place:hover {
@@ -186,4 +194,14 @@ textarea {
 
 .place.active .details {
   display: block;
+}
+
+.add-btn,
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: auto;
+  padding: 2px 6px;
+  font-size: 14px;
 }

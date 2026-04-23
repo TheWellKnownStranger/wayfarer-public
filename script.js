@@ -1,6 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.getElementById("searchBtn");
   const useLocationBtn = document.getElementById("useLocation");
+  const themeToggle = document.getElementById("themeToggle");
+  const mainLogo = document.getElementById("mainLogo");
+
+  function updateLogo() {
+    if (!mainLogo) return;
+    if (document.body.classList.contains("dark")) {
+      mainLogo.src = "https://images4.imagebam.com/15/7f/48/ME1BEF30_o.png";
+    } else {
+      mainLogo.src = "https://images4.imagebam.com/c1/b3/2d/ME1BEF0C_o.png";
+    }
+  }
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  updateLogo();
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+
+      if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+
+      updateLogo();
+    });
+  }
 
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
@@ -62,7 +93,12 @@ function initMap() {
   ];
 
   const resultsList = document.getElementById("resultsList");
+  const savedList = document.getElementById("savedList");
   const suggestions = document.getElementById("suggestions");
+
+  if (savedList) {
+    savedList.innerHTML = "<h3>Saved Searches</h3><div class='grid'></div>";
+  }
 
   places.forEach(place => {
     L.marker([place.lat, place.lng])
@@ -73,8 +109,32 @@ function initMap() {
     div.className = "place";
     div.innerHTML = `
       ${place.name}
+      <button class="add-btn">+</button>
       <div class="details">${place.desc}</div>
     `;
+
+    div.querySelector(".add-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      const saved = document.createElement("div");
+      saved.className = "place";
+      saved.innerHTML = `
+        ${place.name}
+        <button class="remove-btn">-</button>
+        <div class="details">${place.desc}</div>
+      `;
+
+      saved.addEventListener("click", () => {
+        saved.classList.toggle("active");
+      });
+
+      saved.querySelector(".remove-btn").addEventListener("click", (e) => {
+        e.stopPropagation();
+        saved.remove();
+      });
+
+      savedList.querySelector(".grid").appendChild(saved);
+    });
 
     div.addEventListener("click", () => {
       div.classList.toggle("active");
@@ -84,15 +144,23 @@ function initMap() {
   });
 
   if (suggestions) {
-    suggestions.innerHTML = "<h3>Suggestions based on your previous searches</h3>";
+    suggestions.innerHTML = "<h3>Suggestions based on your previous searches</h3><div class='grid'></div>";
   }
 
   places.forEach(place => {
     if (suggestions) {
       const sug = document.createElement("div");
       sug.className = "place";
-      sug.innerText = place.name;
-      suggestions.appendChild(sug);
+      sug.innerHTML = `
+        ${place.name}
+        <div class="details">${place.desc}</div>
+      `;
+
+      sug.addEventListener("click", () => {
+        sug.classList.toggle("active");
+      });
+
+      suggestions.querySelector(".grid").appendChild(sug);
     }
   });
 }
